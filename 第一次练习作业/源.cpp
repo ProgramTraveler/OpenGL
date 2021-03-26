@@ -21,7 +21,7 @@ void MidPoint() {
 
 	vector<Point> line;
 
-	//µÚÒ»²¿·ÖÁ¬½áµã
+	//ç¬¬ä¸€éƒ¨åˆ†è¿žç»“ç‚¹
 	line.push_back(Point(100, 500));
 	line.push_back(Point(150, 500));
 
@@ -46,7 +46,7 @@ void MidPoint() {
 	line.push_back(Point(240, 420));
 	line.push_back(Point(240, 300));
 
-	//µÚ¶þ²¿·ÖÁ¬½Óµã
+	//ç¬¬äºŒéƒ¨åˆ†è¿žæŽ¥ç‚¹
 	line.push_back(Point(100, 200));
 	line.push_back(Point(100, 250));
 
@@ -101,7 +101,7 @@ void MidPoint() {
 	line.push_back(Point(240, 10));
 	line.push_back(Point(300, -20));
 	
-	//µÚÈý²¿·Ö
+	//ç¬¬ä¸‰éƒ¨åˆ†è¿žæŽ¥ç‚¹
 	line.push_back(Point(400, 500));
 	line.push_back(Point(450, 500));
 
@@ -111,7 +111,65 @@ void MidPoint() {
 	line.push_back(Point(300, 250));
 	line.push_back(Point(350, 250));
 
+	line.push_back(Point(350, 250));
+	line.push_back(Point(370, 300));
 
+	line.push_back(Point(430, 450));
+	line.push_back(Point(450, 500));
+
+	line.push_back(Point(430, 450));
+	line.push_back(Point(700, 450));
+
+	line.push_back(Point(390, 350));
+	line.push_back(Point(410, 400));
+
+	line.push_back(Point(410, 400));
+	line.push_back(Point(600, 350));
+
+	line.push_back(Point(560, 250));
+	line.push_back(Point(600, 350));
+
+	line.push_back(Point(390, 350));
+	line.push_back(Point(560, 250));
+
+	line.push_back(Point(370, 300));
+	line.push_back(Point(520, 150));
+
+	line.push_back(Point(440, -50));
+	line.push_back(Point(520, 150));
+
+	line.push_back(Point(440, -50));
+	line.push_back(Point(500, -50));
+
+	line.push_back(Point(500, -50));
+	line.push_back(Point(580, 150));
+
+	line.push_back(Point(620, 250));
+	line.push_back(Point(700, 450));
+
+	line.push_back(Point(580, 150));
+	line.push_back(Point(580, -100));
+
+	line.push_back(Point(620, 250));
+	line.push_back(Point(770, 250));
+
+	line.push_back(Point(770, 250));
+	line.push_back(Point(770, -100));
+
+	line.push_back(Point(580, -100));
+	line.push_back(Point(770, -100));
+
+	line.push_back(Point(620, 200));
+	line.push_back(Point(740, 200));
+
+	line.push_back(Point(740, 200));
+	line.push_back(Point(740, -50));
+
+	line.push_back(Point(620, -50));
+	line.push_back(Point(740, -50));
+	
+	line.push_back(Point(620, -50));
+	line.push_back(Point(620, 200));
 
 
 	cout << line.size() << endl;
@@ -120,13 +178,13 @@ void MidPoint() {
 		y00 = line[i].y;
 		x11 = line[i + 1].x;
 		y11 = line[i + 1].y;
-		cout << x00 << " " << y00 << " " << x11 << " " << y11 << endl;
+		//cout << x00 << " " << y00 << " " << x11 << " " << y11 << endl;
 		glutDisplayFunc(MidPoint);
 
 		double A = y00 - y11;
 		double B = x11 - x00;
 		double k = -1 * (A / B);
-		cout << k << endl;
+		//cout << k << endl;
 		double  x, y, t;
 		int d;
 
@@ -233,11 +291,11 @@ void MidPoint() {
 
 void main(int argc, char** argv) {
 
-	glutInit(&argc, argv); //³õÊ¼»¯glut
-	glutInitDisplayMode(GLUT_DEPTH | GLUT_SINGLE | GLUT_RGBA);//ÉèÖÃ´°¿ÚµÄÄ£Ê½£­Éî¶È»º´æ£¬µ¥»º´æ£¬ÑÕÉ«Ä£ÐÍ
-	glutInitWindowPosition(200, 200); //ÉèÖÃ´°¿ÚµÄÎ»ÖÃ
-	glutInitWindowSize(1000, 500); //ÉèÖÃ´°¿ÚµÄ´óÐ¡
-	glutCreateWindow("¶ÔÃû×Ö½øÐÐÌî³ä"); //´´½¨´°¿Ú²¢¸³Óètitle
+	glutInit(&argc, argv); //åˆå§‹åŒ–glut
+	glutInitDisplayMode(GLUT_DEPTH | GLUT_SINGLE | GLUT_RGBA);//è®¾ç½®çª—å£çš„æ¨¡å¼ï¼æ·±åº¦ç¼“å­˜ï¼Œå•ç¼“å­˜ï¼Œé¢œè‰²æ¨¡åž‹
+	glutInitWindowPosition(200, 200); //è®¾ç½®çª—å£çš„ä½ç½®
+	glutInitWindowSize(1000, 500); //è®¾ç½®çª—å£çš„å¤§å°
+	glutCreateWindow("å¯¹åå­—è¿›è¡Œå¡«å……"); //åˆ›å»ºçª—å£å¹¶èµ‹äºˆtitle
 
 	/*vector<Point> line;
 	line.push_back(Point(500, 500));
@@ -261,6 +319,6 @@ void main(int argc, char** argv) {
 	y11 = line[1].y;*/
 	glutDisplayFunc(MidPoint);
 
-	glutMainLoop(); //½øÈëÑ­»·µÈ´ý
+	glutMainLoop(); //è¿›å…¥å¾ªçŽ¯ç­‰å¾…
 }
 
