@@ -19,7 +19,7 @@ public:
 double x00, y00, x11, y11;
 
 
-int flag[2021][2021] = { 0 };
+int flag[2021][2021] = { 0 }; //对点的绘制进行记录，作为填充的边界判断
 
 vector<Point> line; //记录原始名字点的坐标
 vector<Point> traslation; //记录平移后的点的坐标
@@ -177,7 +177,7 @@ void MakeName() {
 	line.push_back(Point(620, 200));
 }
 
-
+//对原始图形进行平移变换
 void Traslation(int row, int col) {
 	//对原坐标进行平移变换，设置x和y的移动距离
 	for (int i = 0; i < line.size(); i++) {
@@ -185,12 +185,14 @@ void Traslation(int row, int col) {
 	}
 }
 
+//对原始图形进行比例变换
 void Scale(double k) {
 	for (int i = 0; i < line.size(); i++) {
 		scale.push_back(Point(line[i].x * k - 950, line[i].y * k - 450));
 	}
 }
 
+//使用种子填充方法进行像素填充
 void Flood(int a, int b) {
 	int dx[4] = { -1, 0, 1, 0 };
 	int dy[4] = { 0, -1, 0, 1 };
@@ -228,6 +230,7 @@ void Flood(int a, int b) {
 
 }
 
+//使用中点画线方法进行线条的绘制
 void DrawLine(vector<Point>& Line) {
 	for (int i = 0; i < Line.size() - 1; i += 2) {
 		x00 = Line[i].x;
