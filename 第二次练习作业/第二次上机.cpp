@@ -21,7 +21,9 @@ double x00, y00, x11, y11;
 
 int flag[2021][2021] = { 0 };
 
-vector<Point> line;
+vector<Point> line; //记录原始名字点的坐标
+vector<Point> traslation; //记录平移后的点的坐标
+vector<Point> scale; //记录比列变换后的点的坐标
 
 void MakeName() {
 	//第一部分连接点
@@ -175,6 +177,20 @@ void MakeName() {
 	line.push_back(Point(620, 200));
 }
 
+
+void Traslation(int row, int col) {
+	//对原坐标进行平移变换，设置x和y的移动距离
+	for (int i = 0; i < line.size(); i++) {
+		traslation.push_back(Point(line[i].x + row, line[i].y + col));
+	}
+}
+
+void Scale(double k) {
+	for (int i = 0; i < line.size(); i++) {
+		scale.push_back(Point(line[i].x * k - 950, line[i].y * k - 450));
+	}
+}
+
 void Flood(int a, int b) {
 	int dx[4] = { -1, 0, 1, 0 };
 	int dy[4] = { 0, -1, 0, 1 };
@@ -202,23 +218,22 @@ void Flood(int a, int b) {
 
 			flag[n + 1000][m + 1000] = 1;
 			glBegin(GL_POINTS);
-			glColor3f(1, 0, 0);
+			glColor3f(0, 1, 1);
 			glVertex2f((double)n / 1000, (double)m / 1000);
 			glEnd();
 			q.push(Point(n, m));
-			glFlush();
+			//glFlush();
 		}
 	}
 
 }
 
-void MidPoint() {
-	MakeName();
-	for (int i = 0; i < line.size() - 1; i += 2) {
-		x00 = line[i].x;
-		y00 = line[i].y;
-		x11 = line[i + 1].x;
-		y11 = line[i + 1].y;
+void DrawLine(vector<Point>& Line) {
+	for (int i = 0; i < Line.size() - 1; i += 2) {
+		x00 = Line[i].x;
+		y00 = Line[i].y;
+		x11 = Line[i + 1].x;
+		y11 = Line[i + 1].y;
 
 
 
@@ -333,15 +348,38 @@ void MidPoint() {
 				glFlush();
 			}
 		}
-		//cout << i << endl;
 	}
+}
+
+void DrawName() {
+	MakeName(); //生成文字所需要点的信息
+	DrawLine(line); //绘制原文字
+	//对原文字进行填充
 	Flood(25, 102);
 	Flood(141, 90);
 	Flood(521, 151);
+	glFlush();
+
+	Traslation(-950, 450); //对原文字进行平移变换
+	DrawLine(traslation);
+	Flood(25 - 950, 102 + 450);
+	Flood(141 - 950, 90 + 450);
+	Flood(521 - 950, 151 + 450);
+	glFlush();
+
+	Scale(0.5);
+
+	DrawLine(scale);
+	Flood(25 * 0.5 - 950, 102 * 0.5 - 450);
+	Flood(141 * 0.5 - 950, 90 * 0.5 - 450);
+	Flood(521 * 0.5 - 950, 151 * 0.5 - 450);
+	glFlush();
+
+
 }
 
 void display() {
-	MidPoint();
+	DrawName();
 }
 
 int main(int argc, char** argv) {
@@ -350,7 +388,7 @@ int main(int argc, char** argv) {
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);//设置窗口的模式－深度缓存，单缓存，颜色模型
 	glutInitWindowPosition(200, 200); //设置窗口的位置
 
-	glutInitWindowSize(500, 500); //设置窗口的大小
+	glutInitWindowSize(600, 600); //设置窗口的大小
 	glutCreateWindow("对名字进行填充"); //创建窗口并赋予title
 
 	glutDisplayFunc(display);
