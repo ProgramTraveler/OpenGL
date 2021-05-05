@@ -12,7 +12,6 @@ void BezierSurface::ReadControlPoint(Point3D P[4][4])
 		for (int j = 0; j < 4; j++)
 		{
 			P3[i][j] = P[i][j];
-			//std::cout << P3[i][j].x << "  " << P3[i][j].y << " ";
 		}
 }
 void BezierSurface::DrawCurvedSurface()

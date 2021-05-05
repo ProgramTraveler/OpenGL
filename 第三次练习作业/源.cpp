@@ -16,8 +16,8 @@ GLfloat alpha_y = 0.0;
 GLfloat oldx, oldy;
 
 Point3D P3[4][4]; //3D point
-Point3D P[306];   //总控制点
-Patch patch[32]; //总面片
+Point3D P[90];   //总控制点
+Patch patch[13]; //总面片
 BezierSurface surface;
 BezierSurface surfaceControlGrid[32];
 
@@ -36,9 +36,7 @@ void init()
 	glLoadIdentity();
 	glOrtho(-wSize, wSize, -wSize, wSize, -wSize, wSize);
 	glMatrixMode(GL_MODELVIEW);
-	// Set the clear color to black
 	glClearColor(0.0, 0.0, 0.0, 0.0); //black
-	//init_controlpoint();
 	ReadVertex();
 	ReadPatch();
 }
@@ -78,7 +76,6 @@ void ReadVertex()
 		P[i].z = atof(data2.c_str()) * 100;//浮点数表示的y值
 		data1 = "", data2 = "", data3 = "", index = 0;
 		i++;
-		//cout << i << " ";
 	}
 	infile.close();             //关闭文件输入流 
 }
@@ -164,7 +161,6 @@ void ReadPatch()
 		}
 		index = 0;
 		surfNum++;
-		//cout << surfNum << " ";
 	}
 	infile.close();             //关闭文件输入流 
 }
